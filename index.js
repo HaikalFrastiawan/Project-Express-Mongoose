@@ -3,6 +3,12 @@ const express = require ('express')
 const mongoose = require ('mongoose')
 const app = express()
 
+
+//models
+const Product = require('./models/product')
+
+
+
 //connect to mongodb
 mongoose.connect('mongodb://127.0.0.1:27017/shop_db')
  .then(() => console.log('MongoDB connected'))
@@ -16,6 +22,18 @@ app.get('/', (req,res) =>{
     res.send('Hello world')
 }
 )
+
+app.get('/products', async (req,res) =>{
+   const products = await Product.find({})
+   res.render('products/index', {products})
+}
+)
+
+app.get('/products/:id', async(req,res) =>{
+    const { id } = req.params
+    const product = await Product.findById(id)
+    res.render('products/show', {product})
+})
 
 
 app.listen(3000, () =>{

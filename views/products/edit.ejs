@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Product</title>
+</head>
+<body>
+    <h1>edit a product</h1>
+    <form action="/products/<%= product._id %>?_method=PUT" method="post">
+        <label for="name"> name</label>
+        <input type="text" name="name" id="name" value="<%= product.name %>">
+
+        <label for="brand">brand</label>
+        <input type="text" name="brand" id="brand" value="<%= product.brand %>">
+        
+        <label for="color">color</label>
+        <input type="text" name="color" id="color" value="<%= product.color %>">
+
+        <label for="price">price</label>
+        <input type="number" name="price" id="price"value="<%= product.price %>">
+
+        <label for="category">category</label>
+        <select name="category" id="category">
+            <option value="baju" <%= product.category === 'baju' ? 'selected' : '' %> >baju</option>
+            <option value="celana" <%= product.category === 'celana' ? 'selected' : '' %>> celana</option>
+            <option value="jaket" <%= product.category === 'jaket' ? 'selected' : '' %>>jaket</option> 
+            <option value="aksesoris" <%= product.category === 'aksesoris' ? 'selected' : '' %>>aksesoris</option>
+        </select>
+        <button type="submit">submit</button>
+
+    </form>
+</body>
+</html>
